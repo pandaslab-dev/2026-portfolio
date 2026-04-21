@@ -153,11 +153,22 @@ p {
 .hero h1 {
   margin-bottom: 0.12rem;
   color: var(--foreground);
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(2.35rem, 3.55vw, 3.65rem);
   font-weight: 800;
   line-height: 0.94;
   text-transform: uppercase;
   text-shadow: 0 0 20px rgba(244, 240, 232, 0.14);
+}
+
+.name-first {
+  font-weight: 800;
+}
+
+.name-last {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 700;
+  text-shadow: 0 0 22px rgba(212, 160, 0, 0.14);
 }
 
 .role-line {
@@ -180,23 +191,38 @@ p {
   white-space: nowrap;
 }
 
+.claim-line {
+  display: inline;
+}
+
 .word-rotator {
   position: relative;
-  display: inline-block;
-  width: 5.8ch;
-  height: 1em;
-  vertical-align: 0.03em;
+  display: inline-grid;
+  width: var(--word-width, auto);
+  height: 1.12em;
+  margin-right: -0.04em;
+  vertical-align: -0.035em;
   color: var(--gold);
   font-style: italic;
   overflow: hidden;
-  contain: layout paint;
+  contain: paint;
+  transition: width 520ms cubic-bezier(0.2, 0.78, 0.26, 1);
+  will-change: width;
 }
 
 .word {
-  position: absolute;
-  inset: 0 auto auto 0;
-  line-height: 0.98;
+  grid-area: 1 / 1;
+  line-height: 1.04;
   will-change: opacity, transform;
+}
+
+.word-measure {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .word-current {
@@ -522,13 +548,14 @@ p {
 @media (max-width: 980px) {
   .hero {
     grid-template-columns: 1fr;
+    justify-items: center;
     gap: 0.35rem;
     min-height: 100svh;
     padding: 1.4rem clamp(1rem, 5vw, 2rem) 3.6rem;
   }
 
   .panda-stage {
-    width: min(100%, 47rem);
+    width: min(calc(100vw - 2rem), 47rem);
     min-width: 0;
     height: min(61svh, 43rem);
     min-height: 28rem;
@@ -537,12 +564,13 @@ p {
 
   .hero-copy {
     justify-self: center;
-    width: min(100%, 42rem);
+    width: min(calc(100vw - 2.7rem), 42rem);
+    min-width: 0;
     transform: none;
   }
 
   .hero h1 {
-    font-size: clamp(2.2rem, 10.5vw, 3.05rem);
+    font-size: clamp(2.55rem, 11vw, 3.55rem);
     text-align: center;
     white-space: nowrap;
   }
@@ -554,11 +582,16 @@ p {
   }
 
   .hero-claim {
-    max-width: 10.1ch;
+    max-width: 16.4ch;
     margin: 1.25rem auto 0;
-    font-size: clamp(2rem, 9.2vw, 2.65rem);
+    font-size: clamp(1.75rem, 7.2vw, 2.2rem);
     text-align: left;
     white-space: normal;
+  }
+
+  .claim-line {
+    display: block;
+    white-space: nowrap;
   }
 
   .work-prompt {
@@ -594,8 +627,7 @@ p {
 
 @media (max-width: 560px) {
   body::after {
-    inset: 0.7rem;
-    border-color: rgba(244, 240, 232, 0.14);
+    display: none;
   }
 
   .hero {
@@ -603,12 +635,17 @@ p {
   }
 
   .panda-stage {
+    width: calc(100vw - 1.25rem);
     height: 58svh;
-    min-height: 23rem;
+    min-height: 24.5rem;
+  }
+
+  .ascii-panda-hero {
+    transform: scale(1.08);
   }
 
   .hero h1 {
-    font-size: clamp(2rem, 8.8vw, 2.3rem);
+    font-size: clamp(2.28rem, 9.2vw, 2.58rem);
   }
 
   .role-line {
@@ -616,11 +653,7 @@ p {
   }
 
   .hero-claim {
-    font-size: clamp(1.92rem, 8.8vw, 2.42rem);
-  }
-
-  .word-rotator {
-    width: 5.1ch;
+    font-size: clamp(1.66rem, 6.8vw, 2.02rem);
   }
 
   .work-prompt {

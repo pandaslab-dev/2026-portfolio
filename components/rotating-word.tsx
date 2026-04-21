@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const WORDS = ["WORK", "LOOK", "FEEL", "BUILD", "RUN"];
 
@@ -11,6 +12,8 @@ type WordState = {
 };
 
 export function RotatingWord() {
+  const measureRef = useRef<HTMLSpanElement | null>(null);
+  const [wordWidth, setWordWidth] = useState<number | null>(null);
   const [state, setState] = useState<WordState>({
     index: 0,
     previous: null,
@@ -40,9 +43,27 @@ export function RotatingWord() {
   }, []);
 
   const currentWord = WORDS[state.index];
+  const rotatorStyle = {
+    "--word-width": wordWidth === null ? undefined : `${wordWidth}px`,
+  } as CSSProperties;
+
+  useLayoutEffect(() => {
+    if (!measureRef.current) {
+      return;
+    }
+
+    setWordWidth(Math.ceil(measureRef.current.getBoundingClientRect().width));
+  }, [currentWord]);
 
   return (
-    <span className="word-rotator" aria-label={currentWord.toLowerCase()}>
+    <span
+      className="word-rotator"
+      aria-label={currentWord.toLowerCase()}
+      style={rotatorStyle}
+    >
+      <span className="word-measure" ref={measureRef} aria-hidden="true">
+        {currentWord}
+      </span>
       {state.previous ? (
         <span className="word word-exit" key={`out-${state.tick}`}>
           {state.previous}

@@ -15,10 +15,16 @@ export default function Home() {
           </div>
 
           <div className="hero-copy">
-            <h1 id="hero-title">Andy Mills</h1>
+            <h1 id="hero-title">
+              <span className="name-first">Andy</span>{" "}
+              <span className="name-last">Mills</span>
+            </h1>
             <p className="role-line">software engineer / {contact.location}</p>
             <p className="hero-claim">
-              I build things that <RotatingWord /> great
+              <span className="claim-line claim-line-one">I build things</span>{" "}
+              <span className="claim-line claim-line-two">
+                that <RotatingWord /> great
+              </span>
             </p>
           </div>
 

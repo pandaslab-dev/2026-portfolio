@@ -129,7 +129,7 @@ export function AsciiPandaHero() {
       canvasEl.style.height = `${height}px`;
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const widthScale = width < 520 ? 0.52 : 0.82;
+      const widthScale = width < 520 ? 0.9 : 0.82;
       let nextFontSize = (width * widthScale) / (cols * 0.605);
 
       if (nextFontSize * rows * 1.18 > height * 0.86) {

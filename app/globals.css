@@ -50,14 +50,6 @@ body::before {
   opacity: 0.72;
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  pointer-events: none;
-  border: 1px solid rgba(244, 240, 232, 0.07);
-}
 
 a {
   color: inherit;
@@ -544,42 +536,58 @@ p {
 }
 
 .contact-section {
-  padding: clamp(4.5rem, 9vw, 8rem) clamp(1.25rem, 6vw, 6.2rem);
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.25rem, 6vw, 6.2rem) clamp(4rem, 8vw, 7rem);
   border-top: 1px solid rgba(244, 240, 232, 0.08);
 }
 
 .contact-inner {
   display: grid;
-  gap: 1.1rem;
+  gap: 1.6rem;
   width: min(100%, 64rem);
   margin: 0 auto;
 }
 
 .contact-section h2 {
-  max-width: 14ch;
+  max-width: 16ch;
   text-align: left;
+  font-size: clamp(2rem, 4vw, 4rem);
 }
 
 .contact-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 2rem;
-  margin-top: 0.8rem;
+  gap: 0.6rem 1.5rem;
+  margin-top: 0.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(244, 240, 232, 0.1);
 }
 
 .contact-links a {
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(1rem, 2vw, 1.55rem);
   font-style: italic;
   overflow-wrap: anywhere;
   text-shadow: 0 0 24px rgba(212, 160, 0, 0.12);
+  transition:
+    color 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.contact-links a:hover {
+  color: var(--foreground);
+  text-shadow: 0 0 32px rgba(212, 160, 0, 0.28);
 }
 
 .site-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
-  padding: 1.25rem clamp(1.25rem, 6vw, 6.2rem) 1.6rem;
-  color: rgba(244, 240, 232, 0.46);
+  padding: 1.4rem clamp(1.25rem, 6vw, 6.2rem) 1.8rem;
+  border-top: 1px solid rgba(244, 240, 232, 0.06);
+  color: rgba(244, 240, 232, 0.38);
   font-family: var(--font-mono);
   font-size: 0.78rem;
 }
@@ -666,12 +674,8 @@ p {
 
 @media (max-width: 560px) {
   :root {
-    --mobile-center-correction: 0vw;
+    --mobile-center-correction: -3vw;
     --mobile-panda-correction: -6vw;
-  }
-
-  body::after {
-    display: none;
   }
 
   .hero {
@@ -744,16 +748,16 @@ p {
   }
 
   .contact-section {
-    padding: 4rem 1.35rem;
+    padding: 4rem 1.35rem 3.5rem;
   }
 
   .contact-links {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
   .site-footer {
-    padding-inline: 1.35rem;
+    padding: 1.2rem 1.35rem 1.6rem;
   }
 }
 

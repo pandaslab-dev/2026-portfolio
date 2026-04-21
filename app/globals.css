@@ -198,7 +198,7 @@ p {
   font-style: italic;
   overflow: hidden;
   contain: paint;
-  transition: width 520ms cubic-bezier(0.2, 0.78, 0.26, 1);
+  transition: width 300ms cubic-bezier(0.2, 0.78, 0.26, 1);
   will-change: width;
 }
 
@@ -231,24 +231,34 @@ p {
 }
 
 @keyframes word-enter {
-  from {
+  0% {
     opacity: 0;
     transform: translateY(-82%);
   }
 
-  to {
+  50% {
+    opacity: 0;
+    transform: translateY(-8%);
+  }
+
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes word-exit {
-  from {
+  0% {
     opacity: 1;
     transform: translateY(0);
   }
 
-  to {
+  40% {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+
+  100% {
     opacity: 0;
     transform: translateY(82%);
   }

@@ -129,18 +129,18 @@ export function AsciiPandaHero() {
       canvasEl.style.height = `${height}px`;
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const widthScale = width < 520 ? 0.9 : 0.82;
+      const widthScale = width < 520 ? 0.64 : 0.82;
       let nextFontSize = (width * widthScale) / (cols * 0.605);
 
       if (nextFontSize * rows * 1.18 > height * 0.86) {
         nextFontSize = (height * 0.86) / (rows * 1.18);
       }
 
-      fontSize = Math.min(Math.max(nextFontSize, 7), 24);
+      fontSize = Math.min(Math.max(nextFontSize, width < 520 ? 5.2 : 7), 24);
       context.font = `bold ${fontSize}px "Courier New", monospace`;
       charWidth = context.measureText("\u28ff").width;
       charHeight = fontSize * 1.18;
-      originX = (width - cols * charWidth) / 2;
+      originX = (width - cols * charWidth) / 2 - (width < 520 ? width * 0.08 : 0);
       originY = (height - rows * charHeight) / 2;
     }
 

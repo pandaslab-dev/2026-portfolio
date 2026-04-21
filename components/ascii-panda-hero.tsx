@@ -140,7 +140,7 @@ export function AsciiPandaHero() {
       context.font = `bold ${fontSize}px "Courier New", monospace`;
       charWidth = context.measureText("\u28ff").width;
       charHeight = fontSize * 1.18;
-      originX = (width - cols * charWidth) / 2 - (width < 520 ? width * 0.075 : 0);
+      originX = (width - cols * charWidth) / 2;
       originY = (height - rows * charHeight) / 2;
     }
 

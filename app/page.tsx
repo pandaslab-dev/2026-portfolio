@@ -2,6 +2,7 @@ import { AsciiPandaHero } from "@/components/ascii-panda-hero";
 import { RotatingWord } from "@/components/rotating-word";
 import { Starfield } from "@/components/starfield";
 import { contact, projects } from "@/data/portfolio";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -39,13 +40,30 @@ export default function Home() {
         <section className="work-section" id="work" aria-label="Selected work">
           <div className="project-grid">
             {projects.map((project, index) => (
-              <article className="project-card" id={project.id} key={project.id}>
+              <article
+                className="project-card"
+                data-project-id={project.id}
+                id={project.id}
+                key={project.id}
+              >
                 <div>
                   <span className="project-number">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3>{project.title}</h3>
                   <p className="project-kicker">{project.kicker}</p>
+                  <figure className="project-media">
+                    <Image
+                      alt={project.image.alt}
+                      className="project-image"
+                      height={project.image.height}
+                      priority={index === 0}
+                      sizes="(max-width: 980px) calc(100vw - 4rem), 30vw"
+                      src={project.image.src}
+                      unoptimized
+                      width={project.image.width}
+                    />
+                  </figure>
                   <p className="project-summary">{project.summary}</p>
                 </div>
 

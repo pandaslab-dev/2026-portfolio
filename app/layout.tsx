@@ -1,27 +1,21 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { IBM_Plex_Mono, Instrument_Serif, Sora } from "next/font/google";
+import localFont from "next/font/local";
 
 import "./globals.css";
 
-const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500"],
+const playfair = localFont({
+  src: [
+    {
+      path: "./fonts/PlayfairDisplay-VariableFont_wght.ttf",
+      style: "normal",
+    },
+    {
+      path: "./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf",
+      style: "italic",
+    },
+  ],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -29,11 +23,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://pandaslab.dev"),
   title: "Andy Mills | Software Engineer",
   description:
-    "Software engineering portfolio for Andy Mills — full-stack development, AI-assisted systems, real-time products, and production-ready web applications.",
+    "Andy Mills - software engineer in Oklahoma City building practical AI tools, real-time systems, and production web apps.",
   openGraph: {
     title: "Andy Mills | Software Engineer",
     description:
-      "Full-stack developer building AI-assisted tools, real-time systems, and production-ready web applications.",
+      "Software engineer building useful AI tools, real-time systems, and production web apps.",
     url: "https://pandaslab.dev",
     siteName: "pandaslab.dev",
     type: "website",
@@ -42,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Andy Mills | Software Engineer",
     description:
-      "Full-stack developer building AI-assisted tools, real-time systems, and production-ready web applications.",
+      "Software engineer building useful AI tools, real-time systems, and production web apps.",
   },
 };
 
@@ -52,12 +46,8 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${sora.variable} ${instrumentSerif.variable} ${plexMono.variable} bg-[var(--background)] text-[var(--foreground)] antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en">
+      <body className={`${playfair.className} ${playfair.variable}`}>{children}</body>
     </html>
   );
 }

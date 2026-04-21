@@ -674,7 +674,7 @@ p {
 
 @media (max-width: 560px) {
   :root {
-    --mobile-center-correction: -3vw;
+    --mobile-center-correction: -5vw;
     --mobile-panda-correction: -6vw;
   }
 

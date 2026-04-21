@@ -268,7 +268,7 @@ p {
   bottom: clamp(2.6rem, 7vw, 5.8rem);
   display: inline-flex;
   align-items: center;
-  gap: 0.28rem;
+  gap: 0.58rem;
   min-height: 3.4rem;
   padding: 0 1.4rem;
   color: rgba(244, 240, 232, 0.54);
@@ -293,18 +293,39 @@ p {
 }
 
 .prompt-mark {
+  position: relative;
   display: inline-block;
-  width: 0.7em;
-  margin-right: -0.28em;
+  width: 0.82em;
+  height: 0.82em;
+  flex: 0 0 auto;
   color: var(--gold);
-  font-family: var(--font-serif);
-  font-size: 0.82em;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 1;
-  text-align: center;
-  transform: translateY(-0.02em) rotate(90deg);
-  transform-origin: center;
+  font-size: 1em;
+  transform: translateY(0.04em);
+}
+
+.prompt-mark::before,
+.prompt-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+}
+
+.prompt-mark::before {
+  width: 0.12em;
+  height: 0.72em;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translate(-50%, -57%);
+}
+
+.prompt-mark::after {
+  width: 0.44em;
+  height: 0.44em;
+  border-right: 0.12em solid currentColor;
+  border-bottom: 0.12em solid currentColor;
+  transform: translate(-50%, -5%) rotate(45deg);
 }
 
 .section-heading {
@@ -645,8 +666,8 @@ p {
 
 @media (max-width: 560px) {
   :root {
-    --mobile-center-correction: -8vw;
-    --mobile-panda-correction: -11vw;
+    --mobile-center-correction: 0vw;
+    --mobile-panda-correction: -6vw;
   }
 
   body::after {
@@ -685,7 +706,7 @@ p {
   }
 
   .work-prompt {
-    gap: 0.18rem;
+    gap: 0.44rem;
     min-height: 3rem;
     padding: 0 0.6rem;
     font-size: clamp(1.55rem, 8vw, 2.15rem);
@@ -693,8 +714,9 @@ p {
   }
 
   .prompt-mark {
-    width: 0.64em;
-    margin-right: -0.3em;
+    width: 0.7em;
+    height: 0.7em;
+    transform: translateY(0.08em);
   }
 
   .work-section {

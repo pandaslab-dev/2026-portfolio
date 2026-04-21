@@ -23,8 +23,8 @@ export const projects: Project[] = [
     image: {
       src: "/work/oyler-screenshot-mockup.png",
       alt: "Oyler app shown across laptop and phone mockups",
-      width: 1800,
-      height: 1273,
+      width: 1032,
+      height: 585,
     },
     summary: "AI software for equipment teams, manuals, dispatch context, and the messy reality of field work.",
     detail:

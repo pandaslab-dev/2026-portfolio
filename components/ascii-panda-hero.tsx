@@ -349,21 +349,6 @@ export function AsciiPandaHero() {
       }
 
       context.shadowBlur = 0;
-
-      const vignette = context.createRadialGradient(
-        width / 2,
-        height / 2,
-        0,
-        width / 2,
-        height / 2,
-        Math.max(width, height) * 0.72,
-      );
-
-      vignette.addColorStop(0, "rgba(0,0,0,0)");
-      vignette.addColorStop(0.52, "rgba(0,0,0,0)");
-      vignette.addColorStop(1, "rgba(0,0,0,0.64)");
-      context.fillStyle = vignette;
-      context.fillRect(0, 0, width, height);
     }
 
     rafId = window.requestAnimationFrame(draw);

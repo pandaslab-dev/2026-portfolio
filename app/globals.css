@@ -142,6 +142,7 @@ p {
     rgba(0, 0, 0, 0.07) 4px
   );
   mix-blend-mode: multiply;
+  opacity: 0;
 }
 
 .hero-copy {
@@ -181,10 +182,10 @@ p {
 
 .word-rotator {
   position: relative;
-  display: inline-grid;
-  width: 4.9ch;
-  height: 1.05em;
-  vertical-align: -0.05em;
+  display: inline-block;
+  width: 5.8ch;
+  height: 1em;
+  vertical-align: 0.03em;
   color: var(--gold);
   font-style: italic;
   overflow: hidden;
@@ -192,8 +193,9 @@ p {
 }
 
 .word {
-  grid-area: 1 / 1;
-  line-height: 1.05;
+  position: absolute;
+  inset: 0 auto auto 0;
+  line-height: 0.98;
   will-change: opacity, transform;
 }
 

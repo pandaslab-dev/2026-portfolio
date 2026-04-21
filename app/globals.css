@@ -293,33 +293,14 @@ p {
 }
 
 .prompt-mark {
-  position: relative;
   display: inline-block;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-right: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
-  transform: translateY(-0.08rem) rotate(45deg);
-}
-
-.prompt-mark::before,
-.prompt-mark::after {
-  content: "";
-  position: absolute;
-  left: -0.18rem;
-  display: block;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-right: 2px solid rgba(212, 160, 0, 0.62);
-  border-bottom: 2px solid rgba(212, 160, 0, 0.62);
-}
-
-.prompt-mark::before {
-  top: -0.36rem;
-}
-
-.prompt-mark::after {
-  top: 0.36rem;
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1;
+  transform: translateY(-0.1rem) rotate(90deg);
+  transform-origin: center;
 }
 
 .section-heading {
@@ -626,6 +607,10 @@ p {
 }
 
 @media (max-width: 560px) {
+  :root {
+    --mobile-center-correction: -8vw;
+  }
+
   body::after {
     display: none;
   }
@@ -635,9 +620,10 @@ p {
   }
 
   .panda-stage {
-    width: 100%;
+    width: 100vw;
     height: 55svh;
     min-height: 23rem;
+    transform: translateX(var(--mobile-center-correction));
   }
 
   .ascii-panda-hero {
@@ -646,6 +632,10 @@ p {
 
   .hero h1 {
     font-size: clamp(2.18rem, 8.8vw, 2.48rem);
+  }
+
+  .hero-copy {
+    transform: translateX(var(--mobile-center-correction));
   }
 
   .role-line {
@@ -660,6 +650,7 @@ p {
     min-height: 3rem;
     padding: 0 0.6rem;
     font-size: clamp(1.55rem, 8vw, 2.15rem);
+    transform: translateX(var(--mobile-center-correction));
   }
 
   .work-section {

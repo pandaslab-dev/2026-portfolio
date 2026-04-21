@@ -3,7 +3,7 @@
 import type { CSSProperties } from "react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-const WORDS = ["WORK", "LOOK", "FEEL", "BUILD", "RUN"];
+const WORDS = ["WORK", "LOOK", "FEEL", "DEPLOY", "RUN"];
 
 type WordState = {
   index: number;

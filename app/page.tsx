@@ -29,7 +29,9 @@ export default function Home() {
           </div>
 
           <a className="work-prompt" href="#work">
-            <span className="prompt-mark" aria-hidden="true" />
+            <span className="prompt-mark" aria-hidden="true">
+              -&gt;
+            </span>
             <span>see my work...</span>
           </a>
         </section>

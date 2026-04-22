@@ -24,7 +24,8 @@ export default function Home() {
             <p className="hero-claim">
               <span className="claim-line claim-line-one">I build things</span>{" "}
               <span className="claim-line claim-line-two">
-                that <RotatingWord /> great
+                <span className="claim-motion-part">that</span> <RotatingWord />{" "}
+                <span className="claim-motion-part">great</span>
               </span>
             </p>
           </div>

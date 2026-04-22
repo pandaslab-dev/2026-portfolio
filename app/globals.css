@@ -187,33 +187,44 @@ p {
   display: inline;
 }
 
+.claim-motion-part {
+  display: inline-block;
+  will-change: transform;
+}
+
 .word-rotator {
+  --word-bleed-x: 0.18em;
+  --word-bleed-y: 0.08em;
   position: relative;
-  display: inline-grid;
-  width: var(--word-width, auto);
+  display: inline-block;
   height: 1.12em;
   margin-right: -0.04em;
-  vertical-align: -0.012em;
+  vertical-align: 0.06em;
   color: var(--gold);
   font-style: italic;
-  overflow: hidden;
-  contain: paint;
-  transition: width 300ms cubic-bezier(0.2, 0.78, 0.26, 1);
-  will-change: width;
+  overflow: visible;
+}
+
+.word-mask {
+  position: relative;
+  display: inline-block;
+  height: calc(100% + (var(--word-bleed-y) * 2));
+  margin: calc(var(--word-bleed-y) * -1) calc(var(--word-bleed-x) * -1);
+  padding: var(--word-bleed-y) var(--word-bleed-x);
+  vertical-align: top;
+  overflow: clip;
 }
 
 .word {
-  grid-area: 1 / 1;
+  display: inline-block;
   line-height: 1.04;
   will-change: opacity, transform;
 }
 
-.word-measure {
+.word-exit {
   position: absolute;
-  left: 0;
-  top: 0;
-  visibility: hidden;
-  white-space: nowrap;
+  left: var(--word-bleed-x);
+  top: var(--word-bleed-y);
   pointer-events: none;
 }
 

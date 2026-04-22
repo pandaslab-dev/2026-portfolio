@@ -42,6 +42,39 @@ const C_HOT: Rgb = [255, 250, 195];
 const C_WHITE: Rgb = [255, 255, 255];
 const ALT_CHARS = ["░", "▒", "▓", "█", "▄", "▀", "■", "●", "◉", "★", "✦", "◆", "⊕", "▸"];
 const BLANK = new Set([" ", "\u2800"]);
+const BRAILLE_BASE = 0x2800;
+const BRAILLE_DOT_POSITIONS = [
+  { bit: 0, col: 0, row: 0 },
+  { bit: 1, col: 0, row: 1 },
+  { bit: 2, col: 0, row: 2 },
+  { bit: 6, col: 0, row: 3 },
+  { bit: 3, col: 1, row: 0 },
+  { bit: 4, col: 1, row: 1 },
+  { bit: 5, col: 1, row: 2 },
+  { bit: 7, col: 1, row: 3 },
+];
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function isBraille(char: string) {
+  const codePoint = char.codePointAt(0);
+
+  return codePoint !== undefined && codePoint >= BRAILLE_BASE && codePoint <= 0x28ff;
+}
+
+function getBrailleDots(char: string) {
+  const codePoint = char.codePointAt(0);
+
+  if (codePoint === undefined || codePoint < BRAILLE_BASE || codePoint > 0x28ff) {
+    return [];
+  }
+
+  const pattern = codePoint - BRAILLE_BASE;
+
+  return BRAILLE_DOT_POSITIONS.filter(({ bit }) => (pattern & (1 << bit)) !== 0);
+}
 
 function lerp3(a: Rgb, b: Rgb, t: number): Rgb {
   return [
@@ -138,7 +171,7 @@ export function AsciiPandaHero() {
 
       fontSize = Math.min(Math.max(nextFontSize, width < 520 ? 4.8 : 7), 24);
       context.font = `bold ${fontSize}px "Courier New", monospace`;
-      charWidth = context.measureText("\u28ff").width;
+      charWidth = fontSize * 0.605;
       charHeight = fontSize * 1.18;
       originX = (width - cols * charWidth) / 2;
       originY = (height - rows * charHeight) / 2;
@@ -287,6 +320,14 @@ export function AsciiPandaHero() {
 
       context.font = `bold ${fontSize}px "Courier New", monospace`;
       context.textBaseline = "top";
+      const dotRadius = clamp(fontSize * 0.055, 0.45, 1.35);
+      const dotX = [charWidth * 0.31, charWidth * 0.69];
+      const dotY = [
+        charHeight * 0.17,
+        charHeight * 0.38,
+        charHeight * 0.59,
+        charHeight * 0.8,
+      ];
 
       for (let row = 0; row < rows; row += 1) {
         for (let col = 0; col < cols; col += 1) {
@@ -338,13 +379,27 @@ export function AsciiPandaHero() {
           }
 
           context.fillStyle = toRgb(color);
-          context.fillText(
-            !isBelly && (glow[index] > 0.5 || rippleValue > 0.6) && altArr[index]
-              ? altArr[index]
-              : char,
-            x,
-            y,
-          );
+
+          if (!isBelly && isBraille(char)) {
+            if ((glow[index] > 0.5 || rippleValue > 0.6) && altArr[index]) {
+              context.fillText(altArr[index], x, y);
+              continue;
+            }
+
+            for (const dot of getBrailleDots(char)) {
+              context.beginPath();
+              context.arc(
+                x + dotX[dot.col],
+                y + dotY[dot.row],
+                dotRadius,
+                0,
+                Math.PI * 2,
+              );
+              context.fill();
+            }
+          } else {
+            context.fillText(char, x, y);
+          }
         }
       }
 

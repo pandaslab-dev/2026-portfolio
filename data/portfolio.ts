@@ -11,8 +11,10 @@ export type Project = {
   summary: string;
   detail: string;
   tags: string[];
-  href: string;
-  label: string;
+  links: Array<{
+    href: string;
+    label: string;
+  }>;
 };
 
 export const projects: Project[] = [
@@ -26,29 +28,46 @@ export const projects: Project[] = [
       width: 1032,
       height: 585,
     },
-    summary: "AI software for equipment teams, manuals, dispatch context, and the messy reality of field work.",
+    summary:
+      "Affordable smart field service management system for small and enterprise teams.",
     detail:
-      "Built around fast answers, clear records, and practical workflows for technicians and operators.",
+      "Built using NextJS React and Supabase, and implements a fully custom-built RAG AI assistant with the ability to utilize your own API provider.",
     tags: ["AI", "SaaS", "Field Ops"],
-    href: "https://oyler.ai",
-    label: "visit oyler.ai",
+    links: [
+      {
+        href: "https://oyler.ai",
+        label: "visit oyler.ai",
+      },
+      {
+        href: "https://github.com/pandaslab-dev/oylerengine-bulldog-mock-demo",
+        label: "see demo on github",
+      },
+    ],
   },
   {
-    id: "pv-engine",
-    title: "PV Engine",
-    kicker: "creative engine",
+    id: "pandaslides",
+    title: "PandaSlides",
+    kicker: "live presentation app",
     image: {
-      src: "/work/pvengine-screenshot-mockup.png",
-      alt: "PV Engine editor shown in a wide phone mockup",
-      width: 1600,
-      height: 812,
+      src: "/work/pandaslides-promo-1.png",
+      alt: "PandaSlides live presentation software shown on a church stage",
+      width: 2048,
+      height: 1152,
     },
-    summary: "A compact browser tool for timed typography, lyric-video motion, and fast visual iteration.",
+    summary: "Live presentation software for churches, events, and small production teams.",
     detail:
-      "Focused on direct manipulation, preview speed, and keeping the creative loop out of the mud.",
-    tags: ["Canvas", "Animation", "Tools"],
-    href: "https://pvengine.pandaslab.dev",
-    label: "open pv engine",
+      "Built around an operator console, audience output, stage display, and real-time slide control, with both web and SwiftUI versions.",
+    tags: ["Realtime", "WebSockets", "SwiftUI"],
+    links: [
+      {
+        href: "https://slides.pandaslab.dev",
+        label: "open pandaslides",
+      },
+      {
+        href: "https://github.com/pandaslab-dev/pandaslides",
+        label: "see on github",
+      },
+    ],
   },
   {
     id: "flynn-island",
@@ -64,8 +83,16 @@ export const projects: Project[] = [
     detail:
       "An experiment in multiplayer feel, low-friction sessions, and small web worlds that stay lively.",
     tags: ["Realtime", "WebSockets", "Game Dev"],
-    href: "https://flynnisland.pandaslab.dev",
-    label: "visit island",
+    links: [
+      {
+        href: "https://flynnisland.pandaslab.dev",
+        label: "visit island",
+      },
+      {
+        href: "https://github.com/pandaslab-dev/FlynnIsland",
+        label: "see on github",
+      },
+    ],
   },
 ];
 

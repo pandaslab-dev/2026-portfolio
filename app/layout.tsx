@@ -1,23 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import localFont from "next/font/local";
 
+import { pixelifySans, playfair } from "./fonts";
 import "./globals.css";
-
-const playfair = localFont({
-  src: [
-    {
-      path: "./fonts/PlayfairDisplay-VariableFont_wght.ttf",
-      style: "normal",
-    },
-    {
-      path: "./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf",
-      style: "italic",
-    },
-  ],
-  variable: "--font-playfair",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pandaslab.dev"),
@@ -47,7 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playfair.className} ${playfair.variable}`}>{children}</body>
+      <body className={`${playfair.className} ${playfair.variable} ${pixelifySans.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

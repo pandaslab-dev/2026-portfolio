@@ -18,9 +18,13 @@ export function ProjectFeature({ index = 0, project }: ProjectFeatureProps) {
           <span key={tag}>{tag}</span>
         ))}
       </div>
-      <a className="project-link" href={project.href} rel="noreferrer" target="_blank">
-        {project.label}
-      </a>
+      <div className="project-links" aria-label={`${project.title} links`}>
+        {project.links.map((link) => (
+          <a className="project-link" href={link.href} key={link.href} rel="noreferrer" target="_blank">
+            {link.label}
+          </a>
+        ))}
+      </div>
     </article>
   );
 }

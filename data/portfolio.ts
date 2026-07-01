@@ -39,7 +39,7 @@ export const projects: Project[] = [
         label: "visit oyler.ai",
       },
       {
-        href: "https://github.com/pandaslab-dev/oylerengine-bulldog-mock-demo",
+        href: "https://github.com/pandaslab-dev/oyler-engine-labrador-dummy",
         label: "see demo on github",
       },
     ],
